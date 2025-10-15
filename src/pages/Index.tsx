@@ -30,6 +30,10 @@ const initialGames: Game[] = [
     reviews: [
       { user: "ProGamer", score: 5, text: "Best FPS ever made. Period." },
       { user: "CasualPlayer", score: 4, text: "Steep learning curve but worth it." },
+      { user: "TacticalTim", score: 5, text: "The strategy depth is insane. Every round is different." },
+      { user: "AWPer", score: 5, text: "Been playing since 1.6. This is the best version yet." },
+      { user: "NewbieKiller", score: 3, text: "Community can be toxic, but gameplay is solid." },
+      { user: "EsportsWatcher", score: 5, text: "Amazing to play and watch. Pro scene is incredible." },
     ],
   },
   {
@@ -43,6 +47,11 @@ const initialGames: Game[] = [
     reviews: [
       { user: "FantasyFan", score: 5, text: "Masterpiece. Best RPG of the decade." },
       { user: "Geralt99", score: 5, text: "Incredible story and side quests." },
+      { user: "BookReader", score: 5, text: "As a book fan, this adaptation is perfect. CD Projekt nailed it." },
+      { user: "OpenWorldExplorer", score: 5, text: "200 hours in and still finding new things. Insane attention to detail." },
+      { user: "CasualRPGer", score: 4, text: "Combat takes getting used to, but the story makes up for it." },
+      { user: "GwentAddict", score: 5, text: "Came for the story, stayed for Gwent. Best card minigame ever." },
+      { user: "YenneferFan", score: 5, text: "The character development is unmatched. Emotional rollercoaster." },
     ],
   },
   {
@@ -56,6 +65,10 @@ const initialGames: Game[] = [
     reviews: [
       { user: "TechRunner", score: 4, text: "Much improved since launch. Great atmosphere." },
       { user: "NightCityNomad", score: 5, text: "Finally living up to the hype!" },
+      { user: "EdgerunnersViewer", score: 5, text: "Played after watching the anime. Absolutely worth it now." },
+      { user: "LaunchVeteran", score: 3, text: "Still bitter about launch, but it's decent now." },
+      { user: "NetrunnerMain", score: 4, text: "Hacking build is so fun. Night City is gorgeous at night." },
+      { user: "JohnnyFan", score: 5, text: "Keanu Reeves was the perfect choice. Story hits hard." },
     ],
   },
   {
@@ -69,6 +82,11 @@ const initialGames: Game[] = [
     reviews: [
       { user: "CowboyFan", score: 5, text: "Most immersive game I've ever played." },
       { user: "OutlawArthur", score: 5, text: "Story made me cry. 10/10" },
+      { user: "HistoryBuff", score: 5, text: "The historical accuracy mixed with fiction is brilliant." },
+      { user: "HorseWhisperer", score: 5, text: "Spent 50 hours just bonding with my horse. Worth every minute." },
+      { user: "PhotoMode", score: 5, text: "Best graphics I've seen. Every screenshot is a wallpaper." },
+      { user: "SlowPacedGamer", score: 4, text: "Takes its time, but that's the point. A slow-burn masterpiece." },
+      { user: "VanDerLindeGang", score: 5, text: "The gang dynamics and loyalty themes hit different." },
     ],
   },
   {
@@ -82,6 +100,10 @@ const initialGames: Game[] = [
     reviews: [
       { user: "RetroGamer", score: 5, text: "Addictive, stylish, and insanely fun." },
       { user: "JacketFan", score: 4, text: "Perfect soundtrack, perfect gameplay." },
+      { user: "SynthwaveAddict", score: 5, text: "The soundtrack alone is worth the price. Gameplay is chef's kiss." },
+      { user: "SpeedRunner", score: 5, text: "Perfect for speedrunning. So many strats to optimize." },
+      { user: "PixelArtLover", score: 5, text: "Art style is iconic. Neon violence at its finest." },
+      { user: "StoryTheory", score: 4, text: "Cryptic story keeps you thinking. Love the mystery." },
     ],
   },
   {
@@ -95,6 +117,11 @@ const initialGames: Game[] = [
     reviews: [
       { user: "HunterVeteran", score: 5, text: "1000+ hours and still not bored." },
       { user: "NewbieLancer", score: 4, text: "Steep learning curve but extremely rewarding." },
+      { user: "GreatSwordMain", score: 5, text: "Landing a true charged slash never gets old. Peak satisfaction." },
+      { user: "CoopEnthusiast", score: 5, text: "Best with friends. Taking down Elder Dragons together is epic." },
+      { user: "FashionHunter", score: 5, text: "Endgame is all about looking good while hunting. Fashion > Function." },
+      { user: "IceborneFan", score: 5, text: "Iceborne expansion made this perfect. So much content." },
+      { user: "PaladicoLover", score: 4, text: "Palico is the real MVP. 10/10 cat companion." },
     ],
   },
   {
@@ -108,6 +135,11 @@ const initialGames: Game[] = [
     reviews: [
       { user: "FarmLover", score: 5, text: "Perfect game to unwind after work." },
       { user: "PixelFarmer", score: 5, text: "600 hours in. Still finding new things." },
+      { user: "AbbeySimp", score: 5, text: "Married Abigail. Living my best farm life." },
+      { user: "MinMaxer", score: 5, text: "Ancient fruit wine empire. I'm a millionaire now." },
+      { user: "CasualGardener", score: 5, text: "Just vibing with my crops and chickens. Pure zen." },
+      { user: "SoloDevRespect", score: 5, text: "Made by one person. Absolutely incredible achievement." },
+      { user: "ModEnthusiast", score: 5, text: "Vanilla is perfect, modded is next level. Infinite replayability." },
     ],
   },
   {
@@ -121,6 +153,12 @@ const initialGames: Game[] = [
     reviews: [
       { user: "SoloSurvivor", score: 4, text: "Intense and unforgiving. I love it." },
       { user: "ClanLeader", score: 5, text: "Best with friends. Total chaos." },
+      { user: "BeachNaked", score: 5, text: "Got raided 5 times this week. Still playing. Send help." },
+      { user: "BaseBuilder", score: 5, text: "Spent 20 hours building a base. Got offline raided. 10/10 would rebuild." },
+      { user: "RoofCamper", score: 3, text: "Community is toxic but gameplay is addicting." },
+      { user: "PrimitiveLifer", score: 4, text: "Living with spears and bows is actually fun. Reject modernity." },
+      { user: "ZergRaider", score: 5, text: "Nothing beats the adrenaline of a successful raid. Pure chaos." },
+      { user: "SleepDeprived", score: 5, text: "It's 3 AM and I'm defending my base. This game ruined my sleep schedule." },
     ],
   },
 ];

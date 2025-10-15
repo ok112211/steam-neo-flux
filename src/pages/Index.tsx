@@ -131,6 +131,7 @@ const Index = () => {
   const [sortBy, setSortBy] = useState<"popular" | "rating" | "playtime" | "alphabetical">("popular");
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   const [toastMessage, setToastMessage] = useState("");
+  const [activeView, setActiveView] = useState<"store" | "library" | "community" | "about">("library");
 
   const showToast = (message: string) => {
     setToastMessage(message);
@@ -200,13 +201,23 @@ const Index = () => {
 
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-[#0b0f14] via-background to-[#08131a]">
-      <Sidebar totalGames={games.length} totalPlaytime={totalPlaytime} />
+      <Sidebar 
+        totalGames={games.length} 
+        totalPlaytime={totalPlaytime}
+        activeView={activeView}
+        onViewChange={(view) => {
+          setActiveView(view);
+          showToast(`Switched to ${view.charAt(0).toUpperCase() + view.slice(1)}`);
+        }}
+      />
 
       <main className="flex-1 p-8">
-        <header className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div>
-            <h2 className="text-3xl font-bold text-foreground">All Games ({filteredAndSortedGames.length})</h2>
-          </div>
+        {activeView === "library" && (
+          <>
+            <header className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div>
+                <h2 className="text-3xl font-bold text-foreground">All Games ({filteredAndSortedGames.length})</h2>
+              </div>
 
           <div className="flex flex-col gap-3 sm:flex-row">
             <div className="relative">
@@ -247,9 +258,141 @@ const Index = () => {
           ))}
         </div>
 
-        {filteredAndSortedGames.length === 0 && (
-          <div className="mt-16 text-center">
-            <p className="text-xl text-muted-foreground">No games found matching your search.</p>
+            {filteredAndSortedGames.length === 0 && (
+              <div className="mt-16 text-center">
+                <p className="text-xl text-muted-foreground">No games found matching your search.</p>
+              </div>
+            )}
+          </>
+        )}
+
+        {activeView === "store" && (
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-3xl font-bold text-foreground mb-2">Featured & Recommended</h2>
+              <p className="text-muted-foreground">Discover new games handpicked for you</p>
+            </div>
+            
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {games.slice(0, 6).map((game) => (
+                <div key={game.id} className="group overflow-hidden rounded-xl border border-primary/30 bg-card p-6 transition-all hover:border-primary hover:shadow-glow">
+                  <h3 className="text-xl font-bold text-foreground mb-2">{game.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">{game.desc}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-2xl font-bold text-primary">$29.99</span>
+                    <Button 
+                      onClick={() => showToast(`Added ${game.title} to cart!`)}
+                      className="bg-primary text-primary-foreground hover:shadow-glow"
+                    >
+                      Add to Cart
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeView === "community" && (
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-3xl font-bold text-foreground mb-2">Community Hub</h2>
+              <p className="text-muted-foreground">Connect with players around the world</p>
+            </div>
+            
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <div className="rounded-xl border border-border bg-card p-6">
+                <h3 className="text-xl font-bold text-foreground mb-4">Recent Activity</h3>
+                <div className="space-y-3">
+                  {["ProGamer achieved 'Legendary' in CS2", "FantasyFan completed Witcher 3", "TechRunner streamed Cyberpunk for 8 hours"].map((activity, i) => (
+                    <div key={i} className="flex items-center gap-3 p-3 rounded-lg bg-background-secondary">
+                      <div className="h-2 w-2 rounded-full bg-primary animate-glow-pulse" />
+                      <span className="text-sm text-muted-foreground">{activity}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="rounded-xl border border-border bg-card p-6">
+                <h3 className="text-xl font-bold text-foreground mb-4">Friend Requests</h3>
+                <div className="space-y-3">
+                  {["Player123", "GamerPro99", "NightOwl"].map((friend, i) => (
+                    <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-background-secondary">
+                      <span className="text-sm text-foreground">{friend}</span>
+                      <div className="flex gap-2">
+                        <Button 
+                          size="sm" 
+                          onClick={() => showToast(`Accepted friend request from ${friend}`)}
+                          className="bg-primary text-primary-foreground"
+                        >
+                          Accept
+                        </Button>
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          onClick={() => showToast(`Declined friend request from ${friend}`)}
+                        >
+                          Decline
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeView === "about" && (
+          <div className="max-w-3xl space-y-8">
+            <div>
+              <h2 className="text-3xl font-bold text-foreground mb-2">About Steam 2.0</h2>
+              <p className="text-muted-foreground">A futuristic reimagining of the gaming platform</p>
+            </div>
+            
+            <div className="rounded-xl border border-primary/30 bg-card p-8 space-y-6">
+              <div>
+                <h3 className="text-xl font-bold text-primary mb-3">What is Steam 2.0?</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Steam 2.0 is a fan-made concept UI that reimagines the gaming library experience with modern design principles, 
+                  smooth interactions, and a cyberpunk-inspired aesthetic. Built with cutting-edge web technologies, it showcases 
+                  what the future of gaming platforms could look like.
+                </p>
+              </div>
+              
+              <div>
+                <h3 className="text-xl font-bold text-primary mb-3">Features</h3>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    Live search and intelligent filtering
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    Real-time review system with rating updates
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    Playtime tracking and progress visualization
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    Responsive design with glass morphism effects
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-bold text-primary mb-3">Technology Stack</h3>
+                <div className="flex flex-wrap gap-2">
+                  {["React", "TypeScript", "Tailwind CSS", "Vite", "Lucide Icons"].map((tech) => (
+                    <span key={tech} className="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm border border-primary/30">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </main>

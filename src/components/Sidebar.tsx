@@ -3,9 +3,11 @@ import { Library, Store, Users, Info } from "lucide-react";
 interface SidebarProps {
   totalGames: number;
   totalPlaytime: number;
+  activeView: "store" | "library" | "community" | "about";
+  onViewChange: (view: "store" | "library" | "community" | "about") => void;
 }
 
-const Sidebar = ({ totalGames, totalPlaytime }: SidebarProps) => {
+const Sidebar = ({ totalGames, totalPlaytime, activeView, onViewChange }: SidebarProps) => {
   const formatPlaytime = (hours: number) => {
     return `${hours.toLocaleString()} hrs`;
   };
@@ -18,34 +20,50 @@ const Sidebar = ({ totalGames, totalPlaytime }: SidebarProps) => {
       </div>
 
       <nav className="mb-8 space-y-2">
-        <a
-          href="#"
-          className="flex items-center gap-3 rounded-lg bg-card px-4 py-3 text-foreground transition-all hover:bg-card-hover hover:shadow-glow"
+        <button
+          onClick={() => onViewChange("store")}
+          className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 transition-all ${
+            activeView === "store"
+              ? "bg-card text-foreground shadow-glow"
+              : "text-muted-foreground hover:bg-card hover:text-foreground"
+          }`}
         >
           <Store className="h-5 w-5" />
           <span className="font-medium">Store</span>
-        </a>
-        <a
-          href="#"
-          className="flex items-center gap-3 rounded-lg px-4 py-3 text-muted-foreground transition-all hover:bg-card hover:text-foreground"
+        </button>
+        <button
+          onClick={() => onViewChange("library")}
+          className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 transition-all ${
+            activeView === "library"
+              ? "bg-card text-foreground shadow-glow"
+              : "text-muted-foreground hover:bg-card hover:text-foreground"
+          }`}
         >
           <Library className="h-5 w-5" />
           <span className="font-medium">Library</span>
-        </a>
-        <a
-          href="#"
-          className="flex items-center gap-3 rounded-lg px-4 py-3 text-muted-foreground transition-all hover:bg-card hover:text-foreground"
+        </button>
+        <button
+          onClick={() => onViewChange("community")}
+          className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 transition-all ${
+            activeView === "community"
+              ? "bg-card text-foreground shadow-glow"
+              : "text-muted-foreground hover:bg-card hover:text-foreground"
+          }`}
         >
           <Users className="h-5 w-5" />
           <span className="font-medium">Community</span>
-        </a>
-        <a
-          href="#"
-          className="flex items-center gap-3 rounded-lg px-4 py-3 text-muted-foreground transition-all hover:bg-card hover:text-foreground"
+        </button>
+        <button
+          onClick={() => onViewChange("about")}
+          className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 transition-all ${
+            activeView === "about"
+              ? "bg-card text-foreground shadow-glow"
+              : "text-muted-foreground hover:bg-card hover:text-foreground"
+          }`}
         >
           <Info className="h-5 w-5" />
           <span className="font-medium">About</span>
-        </a>
+        </button>
       </nav>
 
       <div className="mt-auto rounded-lg border border-border bg-card/50 p-4">
